@@ -8,5 +8,5 @@ When the company receives a loan application, the company has to decide for loan
 Business Objectives :
 The company wants to understand the driving factors (or driver variables) behind loan default, i.e. the variables which are strong indicators of default. The company can utilise this knowledge for its portfolio and risk assessment.
 
-Download the dataset from the link below.  
+Download the dataset from the link given as below. 
 https://drive.google.com/open?id=16RQztUqCfJOlbooHqYlJrp6Q7iL65uZB
