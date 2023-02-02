@@ -11,42 +11,31 @@ The company wants to understand the driving factors (or driver variables) behind
 Download the dataset from the link given as below. 
 https://drive.google.com/open?id=16RQztUqCfJOlbooHqYlJrp6Q7iL65uZB
 
-from sklearn.datasets import make_moons
-from sklearn.cluster import DBSCAN
-from sklearn.metrics import silhouette_score
+_________
+
+Sure. Here is some sample code in Python that can be used to apply Association Rule Mining in order to identify relationships between independent continuous variables and dependent continuous variables:
+
+```Python
+#import the necessary packages
 import numpy as np
+import pandas as pd
+from mlxtend.frequent_patterns import apriori
 
-# generate sample data
-X, y = make_moons(n_samples=200, noise=0.05, random_state=0)
+#load the data
+data = pd.read_csv('data.csv')
 
-# create a range of min_samples values to test
-min_samples_range = range(2, 10)
+#convert the data into a form suitable for the apriori algorithm
+transaction_data = []
+for i in range(0, data.shape[0]):
+    temp = []
+    for j in range(0, data.shape[1]):
+        temp.append(str(data.values[i,j]))
+    transaction_data.append(temp)
 
-# create a range of epsilon values to test
-eps_range = np.arange(0.1, 1.0, 0.1)
+#apply the apriori algorithm to the data
+rules = apriori(transaction_data, min_support = 0.3, min_confidence = 0.8, min_lift = 3, min_length = 2)
 
-# initialize a list to store the silhouette scores
-silhouette_scores = []
+#output the rules
+print(rules)
 
-# loop through each min_samples value
-for min_samples in min_samples_range:
-    # loop through each epsilon value
-    for eps in eps_range:
-        # apply DBSCAN with the current values of min_samples and eps
-        dbscan = DBSCAN(eps=eps, min_samples=min_samples)
-        labels = dbscan.fit_predict(X)
-        
-        # calculate silhouette score
-        score = silhouette_score(X, labels)
-        
-        # append the silhouette score and the values of min_samples and eps to the list
-        silhouette_scores.append((score, min_samples, eps))
-
-# sort the list by silhouette score in descending order
-silhouette_scores.sort(key=lambda x: x[0], reverse=True)
-
-# get the best values of min_samples and eps
-best_min_samples, best_eps = silhouette_scores[0][1], silhouette_scores[0][2]
-
-print("Best min_samples:", best_min_samples)
-print("Best eps:", best_eps)
+```
