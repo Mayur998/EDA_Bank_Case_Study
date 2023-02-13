@@ -111,3 +111,12 @@ for i, row in df2.iterrows():
 # Save the changes to the file
 book.save('sample.xlsx')
 
+
+
+headers1 = ['A', 'B', 'C']
+for j, header in enumerate(headers1):
+    sheet1.write(0, j, header)
+
+headers2 = ['A', 'B', 'C']
+for j, header in enumerate(headers2):
+    sheet2.write(0, j, header)
