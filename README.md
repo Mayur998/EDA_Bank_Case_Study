@@ -13,6 +13,51 @@ https://drive.google.com/open?id=16RQztUqCfJOlbooHqYlJrp6Q7iL65uZB
 
 _________
 
+
+
+
+
+
+_-------------------------------6
+
+import pandas as pd
+from openpyxl import load_workbook
+
+# list of dataframes
+df_list = [df1, df2, df3]
+
+# list of sheet names
+sheet_names = ['Sheet1', 'Sheet2', 'Sheet3']
+
+# check if the file exists in DBFS
+dbutils.fs.ls("/dbfs/path/to/existing_file.xlsx")
+
+# if the file exists, load it
+if len(dbutils.fs.ls("/dbfs/path/to/existing_file.xlsx")) > 0:
+    with open("/dbfs/path/to/existing_file.xlsx", "rb") as f:
+        content = f.read()
+        book = load_workbook(content)
+
+# if the file doesn't exist, create a new one
+else:
+    book = Workbook()
+
+# create the writer object
+writer = pd.ExcelWriter('/dbfs/path/to/existing_file.xlsx', engine='openpyxl')
+writer.book = book
+
+# write each dataframe to a different sheet
+for i, df in enumerate(df_list):
+    df.to_excel(writer, sheet_name=sheet_names[i], index=False)
+
+# save the changes
+writer.save()
+
+
+
+
+----------------6666666
+
 Sure. Here is some sample code in Python that can be used to apply Association Rule Mining in order to identify relationships between independent continuous variables and dependent continuous variables:
 
 ```Python
