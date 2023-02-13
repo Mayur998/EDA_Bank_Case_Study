@@ -84,3 +84,30 @@ rules = apriori(transaction_data, min_support = 0.3, min_confidence = 0.8, min_l
 print(rules)
 
 ```
+
+
+
+import xlwt
+import pandas as pd
+
+# Example dataframes
+df1 = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6], 'C': [7, 8, 9]})
+df2 = pd.DataFrame({'A': [11, 12, 13], 'B': [14, 15, 16], 'C': [17, 18, 19]})
+
+# Create the workbook and add the sheets
+book = xlwt.Workbook()
+sheet1 = book.add_sheet('Sheet1')
+sheet2 = book.add_sheet('Sheet2')
+
+# Write each dataframe to a different sheet
+for i, row in df1.iterrows():
+    for j, val in enumerate(row):
+        sheet1.write(i, j, val)
+
+for i, row in df2.iterrows():
+    for j, val in enumerate(row):
+        sheet2.write(i, j, val)
+
+# Save the changes to the file
+book.save('sample.xlsx')
+
